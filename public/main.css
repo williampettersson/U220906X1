@@ -1,3 +1,28 @@
 body {
     background-color: violet;
 }
+
+.color {
+    color: #fff;
+}
+
+#app {
+    margin: 0 auto;
+    width: 45%;
+}
+
+#settings {
+    border: 1px solid black;
+    color: #fff;
+    padding: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+#calculator {
+    border: 1px solid black;
+    color: #fff;
+    padding: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
