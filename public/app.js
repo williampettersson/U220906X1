@@ -1,86 +1,110 @@
 console.log('JS does work!');
 
 build();
-calculator();
-settings();
 
 function build() {
-    const targetSettings = document.getElementById('app');
-    const settings = document.createElement('div');
-    settings.setAttribute('id', 'settings');
-    targetSettings.appendChild(settings);
+   
+    const divsettings = document.createElement('div');
+    divsettings.setAttribute('id', 'settings');
+    app.appendChild(divsettings);
 
-    const targetDivSettings = document.getElementById('settings');
-    const divsettings = document.createElement('h1');
-    divsettings.innerHTML = 'Settings';
-    targetDivSettings.appendChild(divsettings);
+    
+    const titleSettings = document.createElement('h1');
+    titleSettings.innerHTML = 'Settings';
+    divsettings.appendChild(titleSettings);
+
+    //Gör knappen, i app div, som ska gömma settings div
+    const HideShowButton = document.createElement('button');
+    HideShowButton.setAttribute('id', 'HSButton')
+    HideShowButton.innerText = 'Hide/Show';
+    //Kolla om settings div är synlig eller ej
+    HideShowButton.onclick = () => settings.hidden = !settings.hidden;
+    app.appendChild(HideShowButton);
+
+   
+    const divcalculator = document.createElement('div');
+    divcalculator.setAttribute('id', 'calculator');
+    app.appendChild(divcalculator);
 
 
-    const targetCalc = document.getElementById('app');
-    const calculator = document.createElement('div');
-    calculator.setAttribute('id', 'calculator');
-    targetCalc.appendChild(calculator);
+    const titleCalc = document.createElement('h1');
+    titleCalc.innerHTML = 'Calculator';
+    divcalculator.appendChild(titleCalc);
 
-    const targetDivCalc = document.getElementById('calculator');
-    const divcalc = document.createElement('h1');
-    divcalc.innerHTML = 'Calculator';
-    targetDivCalc.appendChild(divcalc);
+    buildSettings(settings);
+    buildCalculator(calculator);
 
 }
 
-function settings() {
+function buildSettings() {
 
-    const btnColor = document.getElementById('settings');
-    const color = document.createElement('button');
-    color.setAttribute('id', 'color');
-    color.innerText = 'Color';
-    btnColor.appendChild(color);
+    const dropDownColor = document.createElement('select');
+    dropDownColor.setAttribute('id', 'dropDownColor');
+    dropDownColor.innerText = 'Color';
+    
+    const colorGrey = document.createElement('option');
+    colorGrey.setAttribute('value', 'grey');
+    colorGrey.innerText = 'Grey'
+    dropDownColor.appendChild(colorGrey);
+    
+    const colorBlue = document.createElement('option');
+    colorBlue.setAttribute('value', 'blue');
+    colorBlue.innerText = 'Blue'
+    dropDownColor.appendChild(colorBlue);
 
+    const colorYellow = document.createElement('option');
+    colorYellow.setAttribute('value', 'yellow');
+    colorYellow.innerText = 'Yellow'
+    dropDownColor.appendChild(colorYellow);
+    
+    settings.appendChild(dropDownColor);
 
 }
 
-function calculator() {
+function buildCalculator() {
 
-    const targetNumberInput1 = document.getElementById('calculator');
+    
     const numberInput1 = document.createElement('input');
     numberInput1.setAttribute('id', 'number1');
     numberInput1.setAttribute('name', 'number1');
-    targetNumberInput1.appendChild(numberInput1);
+    calculator.appendChild(numberInput1);
 
-    const btnAddition = document.getElementById('calculator');
+    
     const addition = document.createElement('button');
     addition.setAttribute('id', 'addition');
     addition.innerText = '+';
-    btnAddition.appendChild(addition);
+    calculator.appendChild(addition);
 
-    const btnSubtraction = document.getElementById('calculator');
+    
     const subtraction = document.createElement('button');
     subtraction.setAttribute('id', 'subtraction');
-    subtraction.innerText = '-';
-    btnSubtraction.appendChild(subtraction);
+    subtraction.innerText = '-' ;
+    calculator.appendChild(subtraction);
 
-    const btnMultiply = document.getElementById('calculator');
+    
     const multiply = document.createElement('button');
     multiply.setAttribute('id', 'multiply');
     multiply.innerText = '*';
-    btnMultiply.appendChild(multiply);
+    calculator.appendChild(multiply);
 
-    const btnDivision = document.getElementById('calculator');
+    
     const division = document.createElement('button');
     division.setAttribute('id', 'division');
     division.innerText = '*';
-    btnDivision.appendChild(division);
+    calculator.appendChild(division);
 
-    const targetNumberInput2 = document.getElementById('calculator');
+  
     const numberInput2 = document.createElement('input');
     numberInput2.setAttribute('id', 'number2');
     numberInput2.setAttribute('name', 'number2');
-    targetNumberInput2.appendChild(numberInput2); 
+    calculator.appendChild(numberInput2); 
 
-    const btnClear = document.getElementById('calculator');
+    
     const clear = document.createElement('button');
     clear.setAttribute('id', 'clear');
     clear.innerText = 'Clear';
-    btnClear.appendChild(clear);
+    calculator.appendChild(clear);
+
+
 }
 
