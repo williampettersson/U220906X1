@@ -30,6 +30,7 @@ function build() {
 
 
     const titleCalc = document.createElement('h1');
+    titleCalc.setAttribute('id', 'titlecalc');
     titleCalc.innerHTML = 'Calculator';
     divcalculator.appendChild(titleCalc);
 
@@ -60,7 +61,10 @@ function buildSettings() {
     dropDownColor.appendChild(colorYellow);
 
     dropDownColor.onchange = (event) => {
-        calculator.className = event.target.value;
+        calculator.classList.remove("grey");
+        calculator.classList.remove("yellow");
+        calculator.classList.remove("blue");
+        calculator.classList.add(event.target.value);
     }
 
     settings.appendChild(dropDownColor);
@@ -83,6 +87,10 @@ function buildSettings() {
     font20.setAttribute('value', 'large');
     font20.innerText = '20px'
     dropDownFont.appendChild(font20);
+
+    dropDownFont.onchange = (event) => {
+        results.className = event.target.value;
+    }
     
     settings.appendChild(dropDownFont);
 
@@ -90,17 +98,31 @@ function buildSettings() {
 
 function buildCalculator() {
 
-    
+    const textarea = document.createElement('textarea');
+    textarea.setAttribute('id', 'results');
+    textarea.disabled = true;
+
     const numberInput1 = document.createElement('input');
     numberInput1.setAttribute('id', 'number1');
+    numberInput1.setAttribute('type', 'number');
     numberInput1.setAttribute('name', 'number1');
     calculator.appendChild(numberInput1);
+
+    const numberInput2 = document.createElement('input');
+    numberInput2.setAttribute('id', 'number2');
+    numberInput2.setAttribute('type', 'number');
+    numberInput2.setAttribute('name', 'number2');
+    calculator.appendChild(numberInput2); 
 
     
     const addition = document.createElement('button');
     addition.setAttribute('id', 'addition');
     addition.className = 'buttons';
     addition.innerText = '+';
+    addition.onclick = () => {
+        textarea.append(numberInput1.value + " + " + numberInput2.value + " = " +
+        (Number(numberInput1.value) + Number(numberInput2.value)) + "\n");
+    }
     calculator.appendChild(addition);
 
     
@@ -108,6 +130,10 @@ function buildCalculator() {
     subtraction.setAttribute('id', 'subtraction');
     subtraction.className = 'buttons';
     subtraction.innerText = '-' ;
+    subtraction.onclick = () => {
+        textarea.append(numberInput1.value + " - " + numberInput2.value + " = " +
+        (Number(numberInput1.value) - Number(numberInput2.value)) + "\n");
+    }
     calculator.appendChild(subtraction);
 
     
@@ -115,30 +141,34 @@ function buildCalculator() {
     multiply.setAttribute('id', 'multiply');
     multiply.className = 'buttons';
     multiply.innerText = '*';
+    multiply.onclick = () => {
+        textarea.append(numberInput1.value + " * " + numberInput2.value + " = " +
+        (Number(numberInput1.value) * Number(numberInput2.value)) + "\n");
+    }
     calculator.appendChild(multiply);
 
     
     const division = document.createElement('button');
     division.setAttribute('id', 'division');
     division.className = 'buttons';
-    division.innerText = '*';
+    division.innerText = '/';
+    division.onclick = () => {
+        textarea.append(numberInput1.value + " / " + numberInput2.value + " = " +
+        (Number(numberInput1.value) / Number(numberInput2.value)) + "\n");
+    }
     calculator.appendChild(division);
 
   
-    const numberInput2 = document.createElement('input');
-    numberInput2.setAttribute('id', 'number2');
-    numberInput2.setAttribute('name', 'number2');
-    calculator.appendChild(numberInput2); 
+    
 
-    const textarea = document.createElement('textarea');
-    textarea.setAttribute('id', 'results');
-    textarea.disabled = true;
+    
     calculator.appendChild(textarea);
     
     const clear = document.createElement('button');
     clear.setAttribute('id', 'clear');
     clear.className = 'buttons';
     clear.innerText = 'Clear';
+    clear.onclick = () => textarea.innerHTML = '';
     calculator.appendChild(clear);
 
 
