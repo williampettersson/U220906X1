@@ -6,6 +6,7 @@ function build() {
    
     const divsettings = document.createElement('div');
     divsettings.setAttribute('id', 'settings');
+    divsettings.className = 'greycolor';
     app.appendChild(divsettings);
 
     
@@ -24,6 +25,7 @@ function build() {
    
     const divcalculator = document.createElement('div');
     divcalculator.setAttribute('id', 'calculator');
+    divcalculator.className = 'greycolor';
     app.appendChild(divcalculator);
 
 
@@ -44,20 +46,45 @@ function buildSettings() {
     
     const colorGrey = document.createElement('option');
     colorGrey.setAttribute('value', 'grey');
-    colorGrey.innerText = 'Grey'
+    colorGrey.innerText = 'Dark Slate Grey';
     dropDownColor.appendChild(colorGrey);
     
     const colorBlue = document.createElement('option');
     colorBlue.setAttribute('value', 'blue');
-    colorBlue.innerText = 'Blue'
+    colorBlue.innerText = 'Light Sky Blue';
     dropDownColor.appendChild(colorBlue);
 
     const colorYellow = document.createElement('option');
     colorYellow.setAttribute('value', 'yellow');
-    colorYellow.innerText = 'Yellow'
+    colorYellow.innerText = 'Yellow Green';
     dropDownColor.appendChild(colorYellow);
-    
+
+    dropDownColor.onchange = (event) => {
+        calculator.className = event.target.value;
+    }
+
     settings.appendChild(dropDownColor);
+
+    const dropDownFont = document.createElement('select');
+    dropDownFont.setAttribute('id', 'dropDownFont');
+    dropDownFont.innerText = 'Font';
+
+    const font12 = document.createElement('option');
+    font12.setAttribute('value', 'small');
+    font12.innerText = '12px'
+    dropDownFont.appendChild(font12);
+
+    const font16 = document.createElement('option');
+    font16.setAttribute('value', 'medium');
+    font16.innerText = '16px'
+    dropDownFont.appendChild(font16);
+
+    const font20 = document.createElement('option');
+    font20.setAttribute('value', 'large');
+    font20.innerText = '20px'
+    dropDownFont.appendChild(font20);
+    
+    settings.appendChild(dropDownFont);
 
 }
 
@@ -72,24 +99,28 @@ function buildCalculator() {
     
     const addition = document.createElement('button');
     addition.setAttribute('id', 'addition');
+    addition.className = 'buttons';
     addition.innerText = '+';
     calculator.appendChild(addition);
 
     
     const subtraction = document.createElement('button');
     subtraction.setAttribute('id', 'subtraction');
+    subtraction.className = 'buttons';
     subtraction.innerText = '-' ;
     calculator.appendChild(subtraction);
 
     
     const multiply = document.createElement('button');
     multiply.setAttribute('id', 'multiply');
+    multiply.className = 'buttons';
     multiply.innerText = '*';
     calculator.appendChild(multiply);
 
     
     const division = document.createElement('button');
     division.setAttribute('id', 'division');
+    division.className = 'buttons';
     division.innerText = '*';
     calculator.appendChild(division);
 
@@ -99,9 +130,14 @@ function buildCalculator() {
     numberInput2.setAttribute('name', 'number2');
     calculator.appendChild(numberInput2); 
 
+    const textarea = document.createElement('textarea');
+    textarea.setAttribute('id', 'results');
+    textarea.disabled = true;
+    calculator.appendChild(textarea);
     
     const clear = document.createElement('button');
     clear.setAttribute('id', 'clear');
+    clear.className = 'buttons';
     clear.innerText = 'Clear';
     calculator.appendChild(clear);
 
